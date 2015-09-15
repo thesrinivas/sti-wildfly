@@ -48,3 +48,4 @@ RUN chmod -R go+rw /wildfly && \
 USER 1001
 
 CMD ["usage"]
+LABEL io.openshift.builder-version="15b4e36"

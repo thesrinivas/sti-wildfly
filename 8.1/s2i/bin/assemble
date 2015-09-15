@@ -156,10 +156,14 @@ PASSWORD=passw0rd_
 # Source code provided to S2I is at ${HOME}
 LOCAL_SOURCE_DIR=${HOME}
 mkdir -p $LOCAL_SOURCE_DIR
+local_javaagent_dir=${LOCAL_SOURCE_DIR}
+mkdir -p $local_javaagent_dir
 
 # Resulting WAR files will be deployed to /wildfly/standalone/deployments
 DEPLOY_DIR=/wildfly/standalone/deployments
 mkdir -p $DEPLOY_DIR
+deploy_javaagent_dir=/wildfly/standalone/
+mkdir -p $deploy_javaagent_dir
 
 # Copy the source for compilation
 cp -Rf /opt/s2i/destination/src/. $LOCAL_SOURCE_DIR
@@ -205,6 +209,7 @@ if [ -d $LOCAL_SOURCE_DIR/target ]; then
   chmod -R g+rw $DEPLOY_DIR
 fi
 if [ -d $LOCAL_SOURCE_DIR/deployments ]; then
+  echo "Copying war files from project..."
   cp $LOCAL_SOURCE_DIR/deployments/*.war $DEPLOY_DIR >& /dev/null
   chgrp -R 0 $DEPLOY_DIR
   chmod -R g+rw $DEPLOY_DIR
@@ -224,6 +229,13 @@ if [ -d $LOCAL_SOURCE_DIR/modules ]; then
   chgrp -R 0 /wildfly/provided_modules
   chmod -R g+rw /wildfly/provided_modules
 fi
+
+  if [ -d $local_javaagent_dir ]; then
+    echo "Copying javaagent from $local_javaagent_dir ..."
+    cp -r $local_javaagent_dir $deploy_javaagent_dir >& /dev/null
+    echo "Copying javaagent done "
+  fi
+
 echo "...done"
 
 # This logic is intended to deploy the app as part of assemble
