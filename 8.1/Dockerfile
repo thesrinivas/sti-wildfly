@@ -34,16 +34,18 @@ ADD ./contrib/wfmodules/ /wildfly/modules/
 ADD ./contrib/wfbin/standalone.conf /wildfly/bin/standalone.conf
 ADD ./contrib/wfcfg/standalone.xml /wildfly/standalone/configuration/standalone.xml
 
-ENV JAVA_OPTS="-javaagent:/opt/app-root/src/java-agent/javaagent.jar"
-RUN    pwd
-RUN    ls -al
-
 # Copy the S2I scripts from the specific language image to /usr/local/sti
 COPY ./s2i/bin/ /usr/local/sti
 
+# Add AppDynamics agent
+# agent config java-agent/conf/controller-info.xml is setup with
+# AppD account credentials
+ADD java-agent /opt/app-root/source/java-agent
+
 # Create wildfly group and user, set file ownership to that user.
 RUN chmod -R go+rw /wildfly && \
-    chmod -R go+rw /opt/s2i/destination
+    chmod -R go+rw /opt/s2i/destination && \
+    chmod -R 777 /opt/app-root/source/java-agent
 
 USER 1001
 
