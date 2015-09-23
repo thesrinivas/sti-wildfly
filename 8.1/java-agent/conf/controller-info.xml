@@ -37,7 +37,7 @@
     If a business application of this name does not exist it will be created automatically.
     This can be overridden with an environment variable 'APPDYNAMICS_AGENT_APPLICATION_NAME' or
     the system property '-Dappdynamics.agent.applicationName' -->
-    <application-name>sti-jboss-openshift</application-name>
+    <application-name>sti-kitchensink-openshift</application-name>
 
     <!-- Specify the logical business tier this node belongs to.
     examples for a business tier can be 'ACME Frontend' or 'ACME Backend Service' etc. If your JVM / AppServer start up script already
@@ -76,7 +76,7 @@
     <account-name>customer1</account-name>
     <!-- This can be overridden with an environment variable 'APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY' or
     the system property '-Dappdynamics.agent.accountAccessKey' -->
-    <account-access-key>18d68a61-ac47-4a53-8e73-c0a38dcbbb2c</account-access-key>
+    <account-access-key>ce147da7-0ba2-43c8-9f9a-d7746613c90b</account-access-key>
 
     <!-- Change to 'true' only under special circumstances where this agent has been moved to a new application and/or tier
     from the UI but you want to override that move by specifying a new application name and/or tier name in the agent configuration. -->
