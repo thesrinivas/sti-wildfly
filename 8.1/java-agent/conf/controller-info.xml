@@ -14,7 +14,7 @@
     This is the same host that you use to access the AppDynamics browser based User interface.
     This can be overridden with an environment variable 'CONTROLLER_HOST_NAME' or
     the system property '-Dappdynamics.controller.hostName' -->
-    <controller-host>10.0.32.106</controller-host>
+    <controller-host>10.0.34.79</controller-host>
 
     <!-- This is the http(s) port of the AppDynamics Controller , If 'controller-ssl-enabled' below is set to true, you must
     specify the HTTPS port of the Controller, otherwise specify the HTTP port. Controller gets installed at port 8090 by default.
@@ -23,7 +23,7 @@
     This is the same port that you use to access the AppDynamics browser based User interface.
     This can be overridden with an environment variable 'APPDYNAMICS_CONTROLLER_PORT' or
     the system property '-Dappdynamics.controller.port' -->
-    <controller-port>8080</controller-port>
+    <controller-port>8090</controller-port>
 
     <!-- This specifies if the AppDynamics agent should use SSL(HTTPS) to connect to the Controller. If you set this to true,
     the controller port property above should be set to the HTTPs port of the Controller.
@@ -37,7 +37,7 @@
     If a business application of this name does not exist it will be created automatically.
     This can be overridden with an environment variable 'APPDYNAMICS_AGENT_APPLICATION_NAME' or
     the system property '-Dappdynamics.agent.applicationName' -->
-    <application-name>sti-kitchensink-openshift</application-name>
+    <application-name>os3-ticket-monster</application-name>
 
     <!-- Specify the logical business tier this node belongs to.
     examples for a business tier can be 'ACME Frontend' or 'ACME Backend Service' etc. If your JVM / AppServer start up script already
@@ -45,7 +45,7 @@
     to the same as ${server.tier} You may also use expressions as ${server.tier}_${some.property}.MyTier to define the tier name.
     This can be overridden with an environment variable 'APPDYNAMICS_AGENT_TIER_NAME' or
     the system property '-Dappdynamics.agent.tierName' -->
-    <tier-name>jboss-openshift-tier</tier-name>
+    <tier-name>os3-ticket-monster-tier</tier-name>
 
     <!-- Specify a unique name for this jvm node. The name must be unique within the business application. e.g. weblogicinstance23 or
     hweb24. If your JVM / AppServer start up script already has a system property that can be used as a node name, e.g. -Dserver.name
@@ -53,7 +53,7 @@
     You may also use expressions as ${server.name}_${host.name}.MyNode to define the node name.
     This can be overridden with an environment variable 'APPDYNAMICS_AGENT_NODE_NAME' or
     the system property '-Dappdynamics.agent.nodeName' -->
-    <node-name>npm-cent7-16</node-name>
+    <node-name>os3-pod</node-name>
     
     <!-- Refers to the runtime directory for all runtime files (logs, transaction configuration) for agent nodes using this agent
     installation. The property is optional, by default set to agent-installation-directory . If specified All Agent logs are written
@@ -76,7 +76,7 @@
     <account-name>customer1</account-name>
     <!-- This can be overridden with an environment variable 'APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY' or
     the system property '-Dappdynamics.agent.accountAccessKey' -->
-    <account-access-key>ce147da7-0ba2-43c8-9f9a-d7746613c90b</account-access-key>
+    <account-access-key>184573db-5e72-4ce8-91d5-47eeeee72d63</account-access-key>
 
     <!-- Change to 'true' only under special circumstances where this agent has been moved to a new application and/or tier
     from the UI but you want to override that move by specifying a new application name and/or tier name in the agent configuration. -->
