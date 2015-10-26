@@ -1,3 +1,27 @@
 #!/bin/bash
+
+if [ -n "$DEFAULT_DATASOURCE" ]
+then
+  echo APPDYNAMICS_ENABLED $APPDYNAMICS_ENABLED
+fi
+
+function print_os_env_var {
+  sed_exp=""
+  for openshift_var in $(env | grep OPENSHIFT_ | awk -F '=' '{print $1}')
+  do
+    # environment variable values that contain " or / need to be escaped
+    # or they will cause problems in the sed command line.
+    # variable_val=$(echo "${!openshift_var}" | sed -e "s@\/@\\\\/@g" | sed -e "s/\"/\\\\\"/g")
+    # the entire sed s/search/replace/g command needs to be quoted in case the variable value
+    # contains a space.
+    # sed_exp="${sed_exp} -e \"s/\\\${env.${openshift_var}}/${variable_val}/g\""
+    printf "%s\n" "$openshift_var" >> /tmp/myenv.env
+  done
+}
+
+
 export JAVA_OPTS_EXT='-Djava.util.logging.manager=org.jboss.logmanager.LogManager -Xbootclasspath/p:/wildfly/modules/system/layers/base/org/jboss/log4j/logmanager/main/log4j-jboss-logmanager-1.0.2.Final-redhat-1.jar -javaagent:/opt/app-root/source/java-agent/javaagent.jar -Djboss.modules.system.pkgs=org.jboss.byteman,com.appdynamics,com.appdynamics.,com.singularity,com.singularity.'
+print_os_env_var
+echo JAVA_OPTS_EXT $JAVA_OPTS_EXT >> /tmp/myenv.env
+
 exec /wildfly/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0
