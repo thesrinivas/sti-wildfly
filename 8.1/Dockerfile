@@ -40,7 +40,15 @@ COPY ./s2i/bin/ /usr/local/sti
 # Add AppDynamics agent
 # agent config java-agent/conf/controller-info.xml is setup with
 # AppD account credentials
-ADD java-agent /opt/app-root/source/java-agent
+ENV JAVA_AGENT_VERSION 4.1.5.0
+ENV APPDYNAMICS_DOWNLOAD_URL https://appdynamics.packages.com/java
+RUN mkdir -p /opt/app-root/source/java-agent && \
+    cd /opt/app-root/source/java-agent && \
+    wget https://packages.appdynamics.com/java/$JAVA_AGENT_VERSION/AppServerAgent-$JAVA_AGENT_VERSION.zip && \
+    unzip AppServerAgent-$JAVA_AGENT_VERSION.zip && \
+    rm -rf AppServerAgent-$JAVA_AGENT_VERSION.zip
+
+#ADD java-agent /opt/app-root/source/java-agent
 
 # Create wildfly group and user, set file ownership to that user.
 RUN chmod -R go+rw /wildfly && \
