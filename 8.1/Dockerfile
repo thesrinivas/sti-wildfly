@@ -46,14 +46,13 @@ RUN mkdir -p /opt/app-root/source/java-agent && \
     cd /opt/app-root/source/java-agent && \
     wget https://packages.appdynamics.com/java/$JAVA_AGENT_VERSION/AppServerAgent-$JAVA_AGENT_VERSION.zip && \
     unzip AppServerAgent-$JAVA_AGENT_VERSION.zip && \
-    rm -rf AppServerAgent-$JAVA_AGENT_VERSION.zip
-
+    rm -rf AppServerAgent-$JAVA_AGENT_VERSION.zip && \
+    chmod -R 777 /opt/app-root/source/java-agent
 #ADD java-agent /opt/app-root/source/java-agent
 
 # Create wildfly group and user, set file ownership to that user.
 RUN chmod -R go+rw /wildfly && \
-    chmod -R go+rw /opt/s2i/destination && \
-    chmod -R 777 /opt/app-root/source/java-agent
+    chmod -R go+rw /opt/s2i/destination
 
 USER 1001
 
