@@ -19,7 +19,6 @@ function print_os_env_var {
   done
 }
 
-
 export JAVA_OPTS_EXT='-Djava.util.logging.manager=org.jboss.logmanager.LogManager -Xbootclasspath/p:/wildfly/modules/system/layers/base/org/jboss/log4j/logmanager/main/log4j-jboss-logmanager-1.0.2.Final-redhat-1.jar -javaagent:/opt/app-root/source/java-agent/javaagent.jar -Djboss.modules.system.pkgs=org.jboss.byteman,com.appdynamics,com.appdynamics.,com.singularity,com.singularity.'
 print_os_env_var
 echo JAVA_OPTS_EXT $JAVA_OPTS_EXT >> /tmp/myenv.env

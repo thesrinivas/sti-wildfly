@@ -2,7 +2,7 @@
 
 PID_FILE=/tmp/wildfly.pid
 
-# restore maven dependencies downloaded in a previous build,
+# this restore maven dependencies downloaded in a previous build,
 # so they do not have to be downloaded again.
 # /opt/s2i/destination/artifacts will only be present in the incremental build scenario
 # in which the target image name is an existing docker image which contains
