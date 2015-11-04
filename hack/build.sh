@@ -8,6 +8,7 @@
 
 OS=$1
 VERSION=$2
+APPDYNAMICS_VERSION=$3
 
 DOCKERFILE_PATH=""
 BASE_DIR_NAME=$(echo $(basename `pwd`) | sed -e 's/-[0-9]*$//g')
