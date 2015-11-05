@@ -51,4 +51,6 @@ env >> /tmp/myenv.env
 # Jolokia javaagent 
 echo "" > /opt/eap/bin/standalone.conf
 
+chown -R jboss:jboss /opt/eap/standalone/deployments/
+
 exec /opt/eap/bin/standalone.sh -b 0.0.0.0 -bmanagement 0.0.0.0
