@@ -4,7 +4,6 @@
 
 # Use 
 FROM registry.access.redhat.com/jboss-eap-6/eap-openshift:6.4
-#FROM docker4jboss/base
 
 USER root
 
@@ -28,7 +27,7 @@ COPY ./sti/bin/ /usr/local/sti
 # add our user 
 #RUN $JBOSS_HOME/bin/add-user.sh -g admin -u admin -p admin-123 -s
 
-EXPOSE 22 5455 9999 8009 8080 8443 3528 3529 7500 45700 7600 57600 5445 23364 5432 8090 4447 4712 4713 9990 8787
+EXPOSE 8080 4447 9990
 
 USER jboss
 
